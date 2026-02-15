@@ -16,6 +16,13 @@ class Calendar:
     def _append_to_calendar(self, tuple):
         self.__calendar.append(tuple)
 
+    def _mark_as_completed(self, tuple):
+        if self.__calendar.count(tuple):
+            self.__calendar.remove(tuple)
+            self.__completed.append(tuple)
+        else:
+            print("ERROR - no matching event for [day, event] = [" + tuple + "]")
+
     def _print_calendar(self):
         for i in self.__calendar:
             print(i)
@@ -24,28 +31,23 @@ class Calendar:
         for i in self.__completed:
             print(i)
 
-    def _mark_as_completed(self, key_val):
-        if self.__calendar.count(key_val):
-            self.__completed.append(key_val)
-        else:
-            print("ERROR - no matching event for [day, event] = [" + key_val + "]")
 
-
-cal = Calendar()
+cal1 = Calendar()
+cal2 = Calendar()
 print("================================================")
-cal._append_to_calendar(("2026-02-14", "Dia de San Valentin"))
-cal._append_to_calendar(("2026-02-14", "Cumple de Renata"))
-cal._append_to_calendar(("2026-02-15", "Hacer Asado"))
+cal1._append_to_calendar(("2026-02-14", "Dia de San Valentin"))
+cal1._append_to_calendar(("2026-02-14", "Cumple de Renata"))
+cal2._append_to_calendar(("2026-02-15", "Hacer Asado"))
 print("=============PRINT CALENDARIO : ================")
-cal._print_calendar()
+cal1._print_calendar()
 print("=============PRINT COMPLETED :  ================")
-cal._print_completed()
+cal1._print_completed()
 print("================================================")
-cal._mark_as_completed(("2026-02-15", "Hacer Asado"))
+cal1._mark_as_completed(("2026-02-15", "Hacer Asado"))
 print("=============PRINT CALENDARIO : ================")
-cal._print_calendar()
+cal1._print_calendar()
 print("=============PRINT COMPLETED :  ================")
-cal._print_completed()
+cal1._print_completed()
 print("================================================")
 # print("Start of program")
 # parse = Parser ("I public", "I private")
