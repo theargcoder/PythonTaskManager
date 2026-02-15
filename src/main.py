@@ -1,7 +1,8 @@
 class Calendar:
     __first_inizialization = True
     __singelton = None
-    __calendar = [("2026-02-14", "Default")]
+    __calendar = [("2026-02-14", "Calendar")]
+    __completed = [("2026-02-14", "Completed")]
 
     def __new__(cls):
         if cls.__singelton is None:
@@ -9,6 +10,7 @@ class Calendar:
         if cls.__first_inizialization:
             cls.__first_inizialization = False
             cls.__calendar.clear()
+            cls.__completed.clear()
         return cls.__singelton
 
     def _append_to_calendar(self, tuple):
@@ -18,12 +20,33 @@ class Calendar:
         for i in self.__calendar:
             print(i)
 
+    def _print_completed(self):
+        for i in self.__completed:
+            print(i)
+
+    def _mark_as_completed(self, key_val):
+        if self.__calendar.count(key_val):
+            self.__completed.append(key_val)
+        else:
+            print("ERROR - no matching event for [day, event] = [" + key_val + "]")
+
 
 cal = Calendar()
+print("================================================")
 cal._append_to_calendar(("2026-02-14", "Dia de San Valentin"))
 cal._append_to_calendar(("2026-02-14", "Cumple de Renata"))
 cal._append_to_calendar(("2026-02-15", "Hacer Asado"))
+print("=============PRINT CALENDARIO : ================")
 cal._print_calendar()
+print("=============PRINT COMPLETED :  ================")
+cal._print_completed()
+print("================================================")
+cal._mark_as_completed(("2026-02-15", "Hacer Asado"))
+print("=============PRINT CALENDARIO : ================")
+cal._print_calendar()
+print("=============PRINT COMPLETED :  ================")
+cal._print_completed()
+print("================================================")
 # print("Start of program")
 # parse = Parser ("I public", "I private")
 # print("End of program")
