@@ -1,5 +1,7 @@
 from src.Calendar import Calendar
 import unittest
+import json
+import os
 
 
 class TestCalenda(unittest.TestCase):
@@ -29,6 +31,28 @@ class TestCalenda(unittest.TestCase):
         self.assertEqual([], cal2._get_calendar())
         self.assertEqual([event], cal1._get_completed())
         self.assertEqual([event], cal2._get_completed())
+        cal1._clear_all()
+
+    def test_persistency(self):
+        event = ("2026-02-16", "Comer Asado")
+        cal1 = Calendar()
+        cal1._append_to_calendar(event)
+        cal2 = Calendar()
+        self.assertEqual([event], cal1._get_calendar())
+        self.assertEqual([event], cal2._get_calendar())
+        if not os.path.exists(cal1._get_full_path_and_file_name()):
+            return
+
+        with open(cal1._get_full_path_and_file_name(), "r") as f:
+            data = json.load(f)
+
+            calendar = [tuple(item) for item in data.get("calendar", [])]
+            completed = [tuple(item) for item in data.get("completed", [])]
+
+            self.assertEqual(calendar, cal2._get_calendar())
+            self.assertEqual(completed, cal2._get_completed())
+
+        cal1._clear_all()
 
 
 if __name__ == "__main__":
