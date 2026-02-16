@@ -42,8 +42,9 @@ class Calendar:
             self.__completed = [tuple(x) for x in data.get("completed", [])]
 
     def __clear_file(self):
-        with open(self.__path + self.__file_name, "w") as f:
-            json.dump("", f, indent=4)
+        data = {"calendar": [], "completed": []}
+        with open(self._get_full_path_and_file_name(), "w") as f:
+            json.dump(data, f, indent=4)
 
     def _append_to_calendar(self, tuple):
         self.__calendar.append(tuple)

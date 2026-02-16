@@ -8,6 +8,7 @@ def main():
     parser.add_argument("--add", nargs=2, metavar=("DATE", "EVENT"))
     parser.add_argument("--list", action="store_true")
     parser.add_argument("--completed", nargs=2, metavar=("DATE", "EVENT"))
+    parser.add_argument("--clear", action="store_true")
 
     args = parser.parse_args()
 
@@ -26,6 +27,9 @@ def main():
     if args.list:
         cal._print_calendar()
         cal._print_completed()
+
+    if args.clear:
+        cal._clear_all()
 
 
 if __name__ == "__main__":
