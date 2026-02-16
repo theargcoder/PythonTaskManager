@@ -8,23 +8,26 @@ Will write to a file all the tasks for persistency and be able to add and remove
 ## Installation 
 
 clone the repo
-'''git clone https://github.com/theargcoder/PythonTaskManager'''
+```git clone https://github.com/theargcoder/PythonTaskManager```
 
-## Usge 
+## Usage 
 
-'''cd /path/where/you/cloned/PythonTaskManager'''
+```cd /path/where/you/cloned/PythonTaskManager```
+### Running testbench
+```python3 -m test.test```
+
 #### list saved events
-'''python3 -m src.Cli --list'''
+```python3 -m src.Cli --list```
 
 #### add event
-'''python3 -m src.Cli --add <DATE> <EVENT>'''
+```python3 -m src.Cli --add <DATE> <EVENT>```
 example:
-'''python3 -m src.Cli --add 2026-02-21 Sleep'''
+```python3 -m src.Cli --add 2026-02-21 Sleep```
 
 #### mark event as completed
-'''python3 -m src.Cli --completed <DATE> <EVENT>'''
+```python3 -m src.Cli --completed <DATE> <EVENT>```
 example:
-'''python3 -m src.Cli --completed 2026-02-21 Sleep'''
+```python3 -m src.Cli --completed 2026-02-21 Sleep```
 
 #### clear all events 
-'''python3 -m src.Cli --clear'''
+```python3 -m src.Cli --clear```
