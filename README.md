@@ -1,5 +1,6 @@
 # PythonTaskManager
 This is my intro to Python, its a school project :/ first time ever using python hopefully last time too.
+Now it supports a consise GET/POST/PUT/DELETE API using a REST endpoing with Flask.
 
 ## About
 PythonTaskManager is a command line interface that will be able to serve as a Task Manger for your daily-weekly-montly-yearly-etc tasks.
