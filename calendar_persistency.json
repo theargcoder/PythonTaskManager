@@ -1,4 +1,18 @@
 {
-    "calendar": [],
-    "completed": []
+    "calendar": [
+        [
+            "2026-02-21",
+            "Dormir"
+        ],
+        [
+            "2026-02-23",
+            "comer pizza"
+        ]
+    ],
+    "completed": [
+        [
+            "2026-02-22",
+            "Entregar tarea"
+        ]
+    ]
 }

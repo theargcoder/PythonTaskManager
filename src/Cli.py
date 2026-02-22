@@ -5,9 +5,15 @@ from src.Calendar import Calendar
 def main():
     parser = argparse.ArgumentParser(description="Calendar CLI")
 
-    parser.add_argument("--add", nargs=2, metavar=("DATE", "EVENT"))
+    parser.add_argument(
+        "--add",
+        nargs="+",
+    )
+    parser.add_argument(
+        "--completed",
+        nargs="+",
+    )
     parser.add_argument("--list", action="store_true")
-    parser.add_argument("--completed", nargs=2, metavar=("DATE", "EVENT"))
     parser.add_argument("--clear", action="store_true")
 
     args = parser.parse_args()
@@ -15,14 +21,28 @@ def main():
     cal = Calendar()
 
     if args.add:
-        date, event = args.add
-        cal._append_to_calendar((date, event))
-        print("Event added!")
+        if len(args.add) < 2:
+            print("ERROR: --add requires at least DATE and EVENT")
+            return
+
+        date = args.add[0]
+        event = args.add[1]
+        priority = args.add[2] if len(args.add) > 2 else None
+        expiry = args.add[3] if len(args.add) > 3 else None
+
+        cal._append_to_calendar([date, event, priority, expiry])
 
     if args.completed:
-        date, event = args.completed
-        cal._mark_as_completed((date, event))
-        print("Event competed!")
+        if len(args.completed) < 2:
+            print("ERROR: --completed requires at least DATE and EVENT")
+            return
+
+        date = args.completed[0]
+        event = args.completed[1]
+        priority = args.completed[2] if len(args.completed) > 2 else None
+        expiry = args.completed[3] if len(args.completed) > 3 else None
+
+        cal._mark_as_completed([date, event, priority, expiry])
 
     if args.list:
         cal._print_calendar()
